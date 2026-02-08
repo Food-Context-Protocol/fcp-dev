@@ -8,6 +8,13 @@ import Layout from '../layouts/Layout.astro';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FCP</title>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/icon-180.svg">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#000000">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -173,7 +180,8 @@ import Layout from '../layouts/Layout.astro';
     .timestamp {
       position: fixed;
       bottom: 2rem;
-      left: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 0.75rem;
       color: var(--green);
       opacity: 0.5;
@@ -219,7 +227,6 @@ import Layout from '../layouts/Layout.astro';
       .timestamp {
         font-size: 0.6rem;
         bottom: 1rem;
-        left: 1rem;
       }
       
       .corner-marker {

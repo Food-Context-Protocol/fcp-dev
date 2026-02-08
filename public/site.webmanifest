@@ -1,0 +1,15 @@
+{
+  "name": "FCP",
+  "short_name": "FCP",
+  "icons": [
+    {
+      "src": "/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone"
+}
