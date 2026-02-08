@@ -2,43 +2,279 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="FCP - Coming Soon" description="Something new is coming">
-  <main class="min-h-screen flex items-center justify-center px-6" style="background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e9 100%);">
-    <div class="max-w-2xl w-full text-center">
-      <!-- Logo with green accent -->
-      <div class="mb-16">
-        <div class="inline-block">
-          <h1 class="text-9xl font-bold mb-4" style="color: #333333; letter-spacing: 0.05em;">
-            FCP
-          </h1>
-          <div style="width: 120px; height: 8px; background: linear-gradient(90deg, #4CAF50 0%, #81C784 100%); border-radius: 4px; margin: 0 auto;"></div>
-        </div>
-      </div>
-      
-      <!-- Content -->
-      <div class="space-y-8">
-        <h2 class="text-4xl font-semibold" style="color: #4CAF50;">
-          Coming Soon
-        </h2>
-        <p class="text-xl" style="color: #666666; line-height: 1.8;">
-          Something innovative is on the way.<br/>
-          Stay tuned for updates.
-        </p>
-      </div>
-      
-      <!-- Progress indicator -->
-      <div class="mt-20 flex justify-center items-center space-x-3">
-        <div style="width: 12px; height: 12px; background-color: #4CAF50; border-radius: 50%; animation: pulse 2s infinite;"></div>
-        <div style="width: 8px; height: 8px; background-color: #81C784; border-radius: 50%; opacity: 0.6;"></div>
-        <div style="width: 8px; height: 8px; background-color: #A5D6A7; border-radius: 50%; opacity: 0.4;"></div>
-      </div>
-    </div>
-  </main>
-</Layout>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FCP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<style>
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
-  }
-</style>
+    :root {
+      --green: #4CAF50;
+    }
+
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Scanline effect */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      pointer-events: none;
+      z-index: 1000;
+      animation: scanline 8s linear infinite;
+    }
+
+    @keyframes scanline {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100%); }
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+    }
+
+    .logo {
+      font-size: clamp(6rem, 20vw, 12rem);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      position: relative;
+      display: inline-block;
+      animation: glitch 8s infinite;
+    }
+
+    @keyframes glitch {
+      0%, 90%, 92%, 94%, 100% {
+        transform: translate(0);
+      }
+      91% {
+        transform: translate(-2px, 2px);
+      }
+      93% {
+        transform: translate(2px, -2px);
+      }
+    }
+
+    .logo::before {
+      content: 'FCP';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: var(--green);
+      opacity: 0;
+      animation: glitch-1 2s infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    }
+
+    @keyframes glitch-1 {
+      0%, 90%, 100% {
+        opacity: 0;
+        transform: translate(0);
+      }
+      91%, 99% {
+        opacity: 0.8;
+        transform: translate(-4px, 4px);
+      }
+    }
+
+    .accent {
+      width: 80px;
+      height: 6px;
+      background: var(--green);
+      margin: 2rem auto;
+      position: relative;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 20px var(--green);
+      }
+      50% {
+        opacity: 0.4;
+        box-shadow: 0 0 40px var(--green);
+      }
+    }
+
+    .status {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-top: 3rem;
+      animation: blink 1.5s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 12px;
+      height: 20px;
+      background: var(--green);
+      margin-left: 8px;
+      animation: blink 1s step-end infinite;
+    }
+
+    /* Grid overlay */
+    .grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(76, 175, 80, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(76, 175, 80, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .timestamp {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      font-size: 0.75rem;
+      color: var(--green);
+      opacity: 0.5;
+      font-weight: 400;
+    }
+
+    .corner-marker {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--green);
+    }
+
+    .corner-marker.tl {
+      top: 2rem;
+      left: 2rem;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .corner-marker.tr {
+      top: 2rem;
+      right: 2rem;
+      border-left: none;
+      border-bottom: none;
+    }
+
+    .corner-marker.bl {
+      bottom: 2rem;
+      left: 2rem;
+      border-right: none;
+      border-top: none;
+    }
+
+    .corner-marker.br {
+      bottom: 2rem;
+      right: 2rem;
+      border-left: none;
+      border-top: none;
+    }
+
+    @media (max-width: 768px) {
+      .timestamp {
+        font-size: 0.6rem;
+        bottom: 1rem;
+        left: 1rem;
+      }
+      
+      .corner-marker {
+        width: 15px;
+        height: 15px;
+      }
+      
+      .corner-marker.tl,
+      .corner-marker.tr {
+        top: 1rem;
+      }
+      
+      .corner-marker.bl,
+      .corner-marker.br {
+        bottom: 1rem;
+      }
+      
+      .corner-marker.tl,
+      .corner-marker.bl {
+        left: 1rem;
+      }
+      
+      .corner-marker.tr,
+      .corner-marker.br {
+        right: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+  
+  <div class="corner-marker tl"></div>
+  <div class="corner-marker tr"></div>
+  <div class="corner-marker bl"></div>
+  <div class="corner-marker br"></div>
+
+  <div class="container">
+    <h1 class="logo">FCP</h1>
+    <div class="accent"></div>
+    <div class="status">
+      INITIALIZING<span class="cursor"></span>
+    </div>
+  </div>
+
+  <div class="timestamp" id="timestamp"></div>
+
+  <script>
+    function updateTimestamp() {
+      const now = new Date();
+      const timestamp = now.toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+      document.getElementById('timestamp').textContent = timestamp;
+    }
+    updateTimestamp();
+    setInterval(updateTimestamp, 1000);
+  </script>
+</body>
+</html>
