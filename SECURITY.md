@@ -23,12 +23,10 @@ You will receive an acknowledgment within 48 hours. We will work with you to und
 
 ## Security Measures
 
-- All secrets are managed via Google Cloud Secret Manager
-- Authentication is required for write operations
-- Input sanitization includes prompt injection prevention
-- SSRF protection is enabled on all outbound requests
-- Rate limiting is enforced on all endpoints
+This repository is a static Astro landing page with no server-side functionality. The following measures describe organization-wide practices across Food Context Protocol repositories:
+
 - Dependencies are monitored via Dependabot
+- CI validates builds on every push and pull request
 
 ## Scope
 
