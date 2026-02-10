@@ -1,5 +1,5 @@
 {
-  "name": "FCP",
+  "name": "Food Context Protocol",
   "short_name": "FCP",
   "icons": [
     {
@@ -14,7 +14,7 @@
       "purpose": "any maskable"
     }
   ],
-  "theme_color": "#000000",
-  "background_color": "#000000",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
   "display": "standalone"
 }

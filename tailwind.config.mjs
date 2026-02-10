@@ -4,10 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        'fcp-green': '#4CAF50',
-        'fcp-green-light': '#81C784',
-        'fcp-green-dark': '#388E3C',
-        'fcp-dark': '#333333',
+        'fcp-black': '#0a0a0a',
+        'fcp-gray': {
+          100: '#f5f5f5',
+          300: '#d4d4d4',
+          500: '#737373',
+          900: '#171717',
+        },
       },
     },
   },
