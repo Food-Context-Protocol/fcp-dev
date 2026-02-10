@@ -1,15 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-fcp-black: #0a0a0a;
+  --color-fcp-gray-100: #f5f5f5;
+  --color-fcp-gray-300: #d4d4d4;
+  --color-fcp-gray-500: #737373;
+  --color-fcp-gray-900: #171717;
+  --color-fcp-white: #ffffff;
+}
 
 @layer base {
-  :root {
-    --fcp-green: #4CAF50;
-    --fcp-green-light: #81C784;
-    --fcp-green-dark: #388E3C;
-    --fcp-dark: #333333;
-  }
-
   body {
     @apply bg-white text-gray-900 antialiased;
   }
@@ -17,14 +17,14 @@
 
 @layer components {
   .fcp-btn-primary {
-    @apply bg-[#4CAF50] hover:bg-[#388E3C] text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200 inline-block;
+    @apply bg-gray-950 hover:bg-gray-800 text-white font-medium px-6 py-3 transition-colors duration-200 inline-block;
   }
-  
+
   .fcp-btn-secondary {
-    @apply border-2 border-[#4CAF50] text-[#4CAF50] hover:bg-[#4CAF50] hover:text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200 inline-block;
+    @apply border border-gray-300 text-gray-600 hover:text-gray-950 hover:border-gray-950 font-medium px-6 py-3 transition-colors duration-200 inline-block;
   }
 
   .feature-card {
-    @apply bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-200;
+    @apply bg-white border border-gray-200 p-6 hover:border-gray-400 transition-colors duration-200;
   }
 }
