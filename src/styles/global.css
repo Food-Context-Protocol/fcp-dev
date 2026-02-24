@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/inter.woff2') format('woff2');
+}
+
+@theme {
+  --color-fcp-black: #0a0a0a;
+  --color-fcp-gray-100: #f5f5f5;
+  --color-fcp-gray-300: #d4d4d4;
+  --color-fcp-gray-500: #737373;
+  --color-fcp-gray-900: #171717;
+  --color-fcp-white: #ffffff;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900 antialiased;
+  }
+}
+
+@layer components {
+  .fcp-btn-primary {
+    @apply bg-gray-950 hover:bg-gray-800 text-white font-medium px-6 py-3 transition-colors duration-200 inline-block;
+  }
+
+  .fcp-btn-secondary {
+    @apply border border-gray-300 text-gray-600 hover:text-gray-950 hover:border-gray-950 font-medium px-6 py-3 transition-colors duration-200 inline-block;
+  }
+
+  .feature-card {
+    @apply bg-white border border-gray-200 p-6 hover:border-gray-400 transition-colors duration-200;
+  }
+}
