@@ -49,6 +49,7 @@ curl https://fcp.dev
 ### Auto-Deploy on Push
 
 If you used Option 1 (GitHub connection), Cloudflare Pages will:
+
 - Auto-deploy on every push to `main`
 - Create preview deployments for PRs
 - Provide build logs in the dashboard
@@ -56,6 +57,7 @@ If you used Option 1 (GitHub connection), Cloudflare Pages will:
 ## Next Steps
 
 When ready to update the site:
+
 1. Edit `src/pages/index.astro`
 2. Commit and push to `main`
 3. Cloudflare will auto-deploy in ~1 minute

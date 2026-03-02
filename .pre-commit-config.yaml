@@ -1,0 +1,23 @@
+repos:
+  - repo: local
+    hooks:
+      - id: format
+        name: format
+        entry: npx prettier --check .
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
+
+      - id: check
+        name: astro check
+        entry: npx astro check
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
+
+      - id: build
+        name: build
+        entry: npm run build
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
