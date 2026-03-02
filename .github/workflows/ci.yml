@@ -6,12 +6,42 @@ on:
   pull_request:
     branches: [main]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
   deployments: write
 
 jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+
+      - name: Check formatting
+        run: npx prettier --check .
+
+      - name: Type check
+        run: npx astro check
+
+      - name: Check for merge conflict markers
+        run: |
+          if grep -rEn '^<{7}|^={7}$|^>{7}' --include='*.astro' --include='*.ts' --include='*.css' --include='*.md' --include='*.json' .; then
+            echo "::error::Merge conflict markers found in tracked files"
+            exit 1
+          fi
+
   build:
+    name: Build
+    needs: analyze
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -23,6 +53,7 @@ jobs:
       - run: npm run build
 
   deploy:
+    name: Deploy
     needs: build
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
